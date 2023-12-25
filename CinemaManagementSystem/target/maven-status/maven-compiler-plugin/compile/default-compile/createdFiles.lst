@@ -1,3 +1,10 @@
-com\oop\cinemamanagementsystem\CinemaManagementSystem.class
-classes\Customer.class
-classes\User.class
+classes/Ticket.class
+gui/LoginPage$1.class
+gui/LoginPage.class
+classes/Genre.class
+classes/Movie.class
+gui/RegisterPage$2.class
+gui/RegisterPage$1.class
+gui/LoginPage$3.class
+gui/LoginPage$2.class
+gui/RegisterPage.class

@@ -4,18 +4,24 @@ import java.io.*;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class User implements Serializable {
-    private static final long serialVersionUID = 3319965743419553961L;
+    public static final long serialVersionUID = 6529685098267757690L;
 
     private static int lastAssignedId = 0;
     
-    private String name;
-    private String username;
-    private String email;
-    private String password;
+    String name;
+    String username;
+    String email;
+    String password;
     private int age;
     private int phoneNumber;
+    
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public User(String name, String username, String email, String password) {
         this.name = name;
@@ -32,41 +38,24 @@ public class User implements Serializable {
         this.age = age;
         this.phoneNumber = phoneNumber;
     }
+    
+    public String GetUsername(){
+        return username;
+    }
 
-    public User Login(){
-        ArrayList<User> usersList = readUsersFromFile();
-        for (User user : usersList)
-        {
-            if (user.username.equals(this.username))
-            {
-                if (user.password.equals(this.password))
-                {
-                    return user;
-                }
-                System.out.println("Incorrect Credentials!");
-                return null;
+    protected static boolean isUsernameTaken(ArrayList<User> customersList, String username) {
+        for (User user : customersList) {
+            if (user.username.equals(username)) {
+                return true;
             }
         }
-        return null;
+        return false;
     }
-    
-    public boolean Register(){
-        ArrayList<User> usersList = readUsersFromFile();
-        if (!User.isUsernameTaken(usersList, this.username)){
-            usersList.add(this);
-            User.writeUsersToFile(usersList);
-            return true;
-        }
-        else{
-            System.out.println("User already exists!");
-            return false;
-        }
-    }
-    
-    public static ArrayList<User> readUsersFromFile() {
+
+    protected static ArrayList<User> readUsersFromFile(String path) {
         ArrayList<User> userList = new ArrayList<User>();
 
-        File file = new File("users.dat");
+        File file = new File(path);
 
         if (file.length() == 0) {
             // File is empty, return an empty list
@@ -83,15 +72,9 @@ public class User implements Serializable {
         return userList;
     }
 
-    private static int generateUniqueId() {
-        ArrayList<User> users = readUsersFromFile();
-        lastAssignedId=users.size();
-        return ++lastAssignedId;
-    }
-
-    private static boolean writeUsersToFile(ArrayList<User> userList) {
+    protected static boolean writeUserToFile(ArrayList<User> userList, String path) {
         try {
-            File file = new File("users.dat");
+            File file = new File(path);
 
             if (!file.exists()) {
                 System.out.println("File not found. Creating a new file.");
@@ -108,17 +91,23 @@ public class User implements Serializable {
         return false;
     }
 
-    private static boolean isUsernameTaken(ArrayList<User> userList, String username) {
-        for (User user : userList) {
-            if (user.username.equals(username)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     public String toString() {
         return "User{" + "name=" + name + ", username=" + username + ", email=" + email + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        return Objects.equals(this.username, other.username);
     }
 }
