@@ -22,6 +22,12 @@ public class User implements Serializable {
         this.username = username;
         this.password = password;
     }
+    
+    public User(String name, String username, String email) {
+        this.name = name;
+        this.username = username;
+        this.email = email;
+    }
 
     public User(String name, String username, String email, String password) {
         this.name = name;
@@ -41,6 +47,14 @@ public class User implements Serializable {
     
     public String GetUsername(){
         return username;
+    }
+    
+    public String GetName(){
+        return name;
+    }
+    
+    public String GetEmail(){
+        return email;
     }
 
     protected static boolean isUsernameTaken(ArrayList<User> customersList, String username) {

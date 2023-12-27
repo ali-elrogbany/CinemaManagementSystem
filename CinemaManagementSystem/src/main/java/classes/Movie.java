@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -25,9 +27,9 @@ public class Movie implements Serializable {
     private String name;
     private Genre genre;
     private int minimumAge;
-    private int length;
+    private float length;
 
-    public Movie(String name, Genre Genre, int minimumAge, int length) {
+    public Movie(String name, Genre Genre, int minimumAge, float length) {
         this.name = name;
         this.genre = Genre;
         this.minimumAge = minimumAge;
@@ -46,7 +48,7 @@ public class Movie implements Serializable {
         return minimumAge;
     }
 
-    public int getLength() {
+    public float getLength() {
         return length;
     }
 
@@ -126,13 +128,14 @@ public class Movie implements Serializable {
         }
     }
     
+    public static ComboBoxModel<classes.Movie> GetMovieCombobox(){
+        ArrayList<classes.Movie> genresList = readMoviesFromFile();
+        ComboBoxModel<classes.Movie> model = new DefaultComboBoxModel<>(genresList.toArray(new classes.Movie[0]));
+        return model;
+    }
+    
     public String toString() {
-        return "Movie{" +
-                "name='" + name + '\'' +
-                ", genre=" + genre +
-                ", minimumAge=" + minimumAge +
-                ", length=" + length +
-                '}';
+        return name;
     }
 
     @Override

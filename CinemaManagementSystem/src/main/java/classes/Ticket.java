@@ -22,12 +22,12 @@ public class Ticket implements Serializable {
     private static final long serialVersionUID = 3570081285649915464L;
     
     private Movie movie;
-    private String room;
+    private Room room;
     private int seat;
     private String time;
     private Customer customer;
 
-    public Ticket(Movie movie, String room, int seat, String time) {
+    public Ticket(Movie movie, Room room, int seat, String time) {
         this.movie = movie;
         this.room = room;
         this.seat = seat;
@@ -38,7 +38,7 @@ public class Ticket implements Serializable {
         return movie;
     }
 
-    public String getRoom() {
+    public Room getRoom() {
         return room;
     }
 
@@ -58,7 +58,7 @@ public class Ticket implements Serializable {
         this.movie = movie;
     }
 
-    public void setRoom(String room) {
+    public void setRoom(Room room) {
         this.room = room;
     }
 

@@ -52,9 +52,25 @@ public class Customer extends User {
         return ticket.BookTicket();
     }
     
-//    public void BuySnack(Snack snack){
-//        //
-//    }
+    public boolean BuySnack(Slushy slushy){
+        slushy.setCustomer(this);
+        return slushy.Buy();
+    }
+    
+    public boolean BuySnack(Popcorn popcorn){
+        popcorn.setCustomer(this);
+        return popcorn.Buy();
+    }
+    
+    public boolean BuySnack(Nacho nacho){
+        nacho.setCustomer(this);
+        return nacho.Buy();
+    }
+    
+    public boolean BuySnack(SoftDrink softDrink){
+        softDrink.setCustomer(this);
+        return softDrink.Buy();
+    }
     
     public ArrayList<Ticket> GetTickets(){
         ArrayList<Ticket> allTickets = Ticket.readTicketsFromFile();

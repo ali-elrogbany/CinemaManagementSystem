@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -45,7 +47,7 @@ public class Genre implements Serializable {
         return false;
     }
     
-    protected static ArrayList<Genre> readGenresFromFile() {
+    public static ArrayList<Genre> readGenresFromFile() {
         ArrayList<Genre> genresList = new ArrayList<Genre>();
 
         File file = new File("genres.dat");
@@ -96,6 +98,12 @@ public class Genre implements Serializable {
             return false;
         }
     }
+    
+    public static ComboBoxModel<classes.Genre> GetGenreCombobox(){
+        ArrayList<classes.Genre> genresList = readGenresFromFile();
+        ComboBoxModel<classes.Genre> model = new DefaultComboBoxModel<>(genresList.toArray(new classes.Genre[0]));
+        return model;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -110,5 +118,10 @@ public class Genre implements Serializable {
         }
         final Genre other = (Genre) obj;
         return Objects.equals(this.name, other.name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

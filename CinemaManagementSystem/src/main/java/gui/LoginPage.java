@@ -178,7 +178,8 @@ public class LoginPage extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(this, "Welcome "+loggedUser.GetUsername());
                     System.out.println("Logged in as employee!");
-    //                this.dispose();
+                    new EmployeePage(loggedUser).setVisible(true);
+                    this.dispose();
                 }
             }
 
