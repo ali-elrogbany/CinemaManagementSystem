@@ -5,6 +5,7 @@
 package gui;
 
 import classes.*;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -401,8 +402,12 @@ public class EmployeePage extends javax.swing.JFrame {
             if (!n.isBlank() && !g.equals(null)){
                 Movie m = new Movie(n, g, a, l);
                 boolean movieAdded = employee.AddMovie(m);
-                if (movieAdded){
-                JOptionPane.showMessageDialog(this, "Movie Added");
+                if (movieAdded)
+                {
+                    JOptionPane.showMessageDialog(this, "Movie Added");
+                    roomMovie.removeAllItems();
+                    roomMovie.setModel(Movie.GetMovieCombobox());
+                    initComponents();
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Error adding movie");
@@ -419,16 +424,55 @@ public class EmployeePage extends javax.swing.JFrame {
 
     private void roomAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomAddButtonActionPerformed
         // TODO add your handling code here:
+        try{
+            int id = Integer.valueOf(roomID.getText());
+            String st = roomScreenType.getText();
+            String spt = roomSpeakerType.getText();
+            Movie m = (Movie) roomMovie.getSelectedItem();
+            int nbs = Integer.valueOf(roomNbSeats.getText());
+            
+            if (!roomID.getText().equals("") && !st.equals("") && !spt.equals("") && !m.equals(null) && !roomNbSeats.getText().equals(""))
+            {
+                Speaker speaker = new Speaker(spt);
+                Screen screen = new Screen(st, speaker);
+                ArrayList<Seat> seats = new ArrayList<Seat>();
+                for (int i = 0; i < nbs; i++){
+                    Seat newSeat = new Seat(i);
+                    seats.add(newSeat);
+                }
+
+                Room room = new Room(id, screen, m, seats);
+                boolean roomAdded = employee.AddRoom(room);
+
+                if (roomAdded){
+                    JOptionPane.showMessageDialog(this, "Room Added");
+                    initComponents();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error adding room");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Fill all fields");
+            }
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Fill all fields correctly");
+        }
     }//GEN-LAST:event_roomAddButtonActionPerformed
 
     private void genreAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genreAddButtonActionPerformed
         // TODO add your handling code here:
         String n = genreName.getText();
-        if (!n.isBlank()){
+        if (!n.equals("")){
             Genre g = new Genre(n);
             boolean genreAdded = employee.AddGenre(g);
             if (genreAdded){
                 JOptionPane.showMessageDialog(this, "Genre Added");
+                movieGenre.removeAllItems();
+                movieGenre.setModel(Genre.GetGenreCombobox());
+                initComponents();
             }
             else{
                 JOptionPane.showMessageDialog(this, "Error adding genre");

@@ -54,4 +54,8 @@ public class Employee extends User{
     public boolean AddMovie(Movie movie){
         return movie.AddMovie();
     }
+    
+    public boolean AddRoom(Room room){
+        return room.AddRoom();
+    }
 }

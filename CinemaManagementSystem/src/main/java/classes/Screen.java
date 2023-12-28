@@ -4,11 +4,15 @@
  */
 package classes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alielrogbany
  */
-public class Screen {
+public class Screen implements Serializable {
+    public static final long serialVersionUID = 6529685098267757690L;
+    
     private String screenType;
     private Speaker speaker;
 

@@ -4,11 +4,15 @@
  */
 package classes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alielrogbany
  */
-public class Seat {
+public class Seat implements Serializable {
+    public static final long serialVersionUID = 6529685098267757690L;
+    
     private int number;
     private String reservedBy;
 

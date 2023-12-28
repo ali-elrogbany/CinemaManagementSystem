@@ -4,19 +4,30 @@
  */
 package classes;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author alielrogbany
  */
-public class Room {
+public class Room implements Serializable {
+    public static final long serialVersionUID = 6529685098267757690L;
+    
     private int id;
     private Screen screen;
     private Movie movie;
-    private List<Seat> seats;
+    private ArrayList<Seat> seats;
 
-    public Room(int id, Screen screen, Movie movie, List<Seat> seats) {
+    public Room(int id, Screen screen, Movie movie, ArrayList<Seat> seats) {
         this.id = id;
         this.screen = screen;
         this.movie = movie;
@@ -51,7 +62,92 @@ public class Room {
         return seats;
     }
 
-    public void setSeats(List<Seat> seats) {
+    public void setSeats(ArrayList<Seat> seats) {
         this.seats = seats;
     }
+    
+    protected boolean roomExists(List<Room> roomList) {
+        for (Room room : roomList) {
+            if (room.equals(this)) {
+                return true;
+            } else {
+            }
+        }
+        return false;
+    }
+
+    protected static ArrayList<Room> readRoomsFromFile() {
+        ArrayList<Room> roomList = new ArrayList<>();
+
+        File file = new File("rooms.dat");
+
+        if (file.length() == 0) {
+            // File is empty, return an empty list
+            return roomList;
+        }
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            roomList = (ArrayList<Room>) ois.readObject();
+        } catch (FileNotFoundException e) {
+            // Ignore if the file doesn't exist yet
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return roomList;
+    }
+    
+    protected static boolean writeRoomToFile(List<Room> roomsList) {
+       try {
+           File file = new File("rooms.dat");
+
+           if (!file.exists()) {
+               System.out.println("File not found. Creating a new file.");
+               file.createNewFile();
+           }
+
+           try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+               oos.writeObject(roomsList);
+               return true;
+           }
+       } catch (IOException e) {
+       }
+       return false;
+    }
+    
+    protected static ArrayList<Room> GetRoomsByMovie(ArrayList<Room> roomsList, Movie movie){
+        ArrayList<Room> returnedRooms = new ArrayList<Room>();
+        for (Room room : roomsList){
+            if (room.getMovie().equals(movie)){
+                returnedRooms.add(room);
+            }
+        }
+        return returnedRooms;
+    }
+    
+    public boolean AddRoom(){
+        ArrayList<Room> roomsList = readRoomsFromFile();
+        if (!roomExists(roomsList)){
+            roomsList.add(this);
+            writeRoomToFile(roomsList);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Room other = (Room) obj;
+        return this.id == other.id;
+    }
+     
+     
 }
