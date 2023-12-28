@@ -23,11 +23,11 @@ public class Ticket implements Serializable {
     
     private Movie movie;
     private Room room;
-    private int seat;
+    private Seat seat;
     private String time;
     private Customer customer;
 
-    public Ticket(Movie movie, Room room, int seat, String time) {
+    public Ticket(Movie movie, Room room, Seat seat, String time) {
         this.movie = movie;
         this.room = room;
         this.seat = seat;
@@ -42,7 +42,7 @@ public class Ticket implements Serializable {
         return room;
     }
 
-    public int getSeat() {
+    public Seat getSeat() {
         return seat;
     }
 
@@ -62,7 +62,7 @@ public class Ticket implements Serializable {
         this.room = room;
     }
 
-    public void setSeat(int seat) {
+    public void setSeat(Seat seat) {
         this.seat = seat;
     }
 
@@ -76,7 +76,7 @@ public class Ticket implements Serializable {
     
     protected boolean IsTicketBooked(ArrayList<Ticket> ticketsList){
         for (Ticket ticket : ticketsList){
-            if (ticket.getMovie().equals(this.movie) && ticket.getRoom().equals(this.room) && ticket.getSeat() == this.seat && ticket.getTime().equals(this.time)){
+            if (ticket.getMovie().equals(this.movie) && ticket.getRoom().equals(this.room) && ticket.getSeat().equals(this.seat) && ticket.getTime().equals(this.time)){
                 return true;
             }
         }

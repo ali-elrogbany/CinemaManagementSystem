@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -58,7 +60,7 @@ public class Room implements Serializable {
         this.movie = movie;
     }
 
-    public List<Seat> getSeats() {
+    public ArrayList<Seat> getSeats() {
         return seats;
     }
 
@@ -76,7 +78,7 @@ public class Room implements Serializable {
         return false;
     }
 
-    protected static ArrayList<Room> readRoomsFromFile() {
+    public static ArrayList<Room> readRoomsFromFile() {
         ArrayList<Room> roomList = new ArrayList<>();
 
         File file = new File("rooms.dat");
@@ -114,7 +116,7 @@ public class Room implements Serializable {
        return false;
     }
     
-    protected static ArrayList<Room> GetRoomsByMovie(ArrayList<Room> roomsList, Movie movie){
+    public static ArrayList<Room> GetRoomsByMovie(ArrayList<Room> roomsList, Movie movie){
         ArrayList<Room> returnedRooms = new ArrayList<Room>();
         for (Room room : roomsList){
             if (room.getMovie().equals(movie)){
@@ -122,6 +124,14 @@ public class Room implements Serializable {
             }
         }
         return returnedRooms;
+    }
+    
+    public static ComboBoxModel<Room> GetRoomsCombobox(ArrayList<Room> roomsList){
+        ComboBoxModel<Room> model = new DefaultComboBoxModel<>();
+        if (roomsList.size() > 0){
+            model = new DefaultComboBoxModel<>(roomsList.toArray(new Room[0]));
+        }
+        return model;
     }
     
     public boolean AddRoom(){
@@ -147,6 +157,11 @@ public class Room implements Serializable {
         }
         final Room other = (Room) obj;
         return this.id == other.id;
+    }
+
+    @Override
+    public String toString() {
+        return id + "";
     }
      
      

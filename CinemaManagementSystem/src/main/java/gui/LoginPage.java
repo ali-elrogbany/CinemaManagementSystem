@@ -192,7 +192,8 @@ public class LoginPage extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(this, "Welcome "+loggedUser.GetUsername());
                     System.out.println("Logged in as customer!");
-    //                this.dispose();
+                    new CustomerPage(loggedUser).setVisible(true);
+                    this.dispose();
                 }
             }
         }

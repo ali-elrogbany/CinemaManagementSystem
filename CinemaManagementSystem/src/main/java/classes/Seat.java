@@ -5,6 +5,9 @@
 package classes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -14,7 +17,6 @@ public class Seat implements Serializable {
     public static final long serialVersionUID = 6529685098267757690L;
     
     private int number;
-    private String reservedBy;
 
     public Seat(int number) {
         this.number = number;
@@ -27,12 +29,34 @@ public class Seat implements Serializable {
     public void setNumber(int number) {
         this.number = number;
     }
-
-    public String getReservedBy() {
-        return reservedBy;
+    
+    public static ComboBoxModel<Seat> GetSeatsCombobox(ArrayList<Seat> seatsList){
+        ComboBoxModel<Seat> model = new DefaultComboBoxModel<>();
+        if (seatsList.size() > 0){
+            model = new DefaultComboBoxModel<>(seatsList.toArray(new Seat[0]));
+        }
+        return model;
     }
 
-    public void reserve(String reservedBy) {
-        this.reservedBy = reservedBy;
+    @Override
+    public String toString() {
+        return number + "";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Seat other = (Seat) obj;
+        return this.number == other.number;
+    }
+    
+    
 }

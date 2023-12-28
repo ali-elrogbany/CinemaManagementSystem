@@ -1,6 +1,7 @@
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/classes/Customer.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/classes/Snack.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/classes/User.java
+/Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/gui/TicketsPage.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/com/oop/cinemamanagementsystem/CinemaManagementSystem.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/gui/ProfilePage.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/gui/EmployeePage.java
@@ -9,6 +10,7 @@
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/gui/RegisterPage.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/classes/Screen.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/classes/IBuySnack.java
+/Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/gui/CustomerPage.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/classes/Seat.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/classes/Genre.java
 /Users/alielrogbany/Documents/UNI/Y2 S1/OOP/FinalProject/CinemaManagementSystem/CinemaManagementSystem/src/main/java/classes/Slushy.java
